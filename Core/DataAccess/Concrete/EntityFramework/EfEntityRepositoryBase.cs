@@ -45,7 +45,12 @@ namespace Core.DataAccess.Concrete.EntityFramework
 
 		public void Update(TEntity entity)
 		{
-			throw new NotImplementedException();
+			using (TContext context = new TContext())
+			{
+				var updatedEntity = context.Entry(entity);
+				updatedEntity.State = EntityState.Modified;
+				context.SaveChanges();
+			}
 		}
 	}
 }
