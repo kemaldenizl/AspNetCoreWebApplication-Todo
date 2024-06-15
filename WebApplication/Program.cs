@@ -1,14 +1,18 @@
+using DataAccess.Concrete.EntityFramework.Contexts;
+using Microsoft.EntityFrameworkCore;
+
 namespace WebApplication
 {
 	public class Program
 	{
 		public static void Main(string[] args)
 		{
-			var builder = WebApplication.CreateBuilder(args);
+			var builder = Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder(args);
 
 			// Add services to the container.
 			builder.Services.AddControllersWithViews();
-
+			builder.Services.AddDbContext<TodoContext>(options =>
+				options.UseSqlServer(builder.Configuration.GetConnectionString("dbstring")));
 			var app = builder.Build();
 
 			// Configure the HTTP request pipeline.

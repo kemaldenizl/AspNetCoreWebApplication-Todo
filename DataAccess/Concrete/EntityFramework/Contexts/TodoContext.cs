@@ -12,7 +12,7 @@ namespace DataAccess.Concrete.EntityFramework.Contexts
 	{
 		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{
-			optionsBuilder.UseSqlServer(@"server=DESKTOP-3C9L670;database=db_todos; integrated security=SSPI; TrustServerCertificate=True;");
+			base.OnConfiguring(optionsBuilder);
 		}
 
 		public DbSet<Todo> Todos { get; set; }
